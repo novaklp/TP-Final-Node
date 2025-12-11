@@ -5,7 +5,14 @@ export const getAllProd = async () => {
 };
 
 export const getProdById = async (id) => {
-    return await ProductModel.findById(id);
+    const product = await ProductModel.findById(id);
+
+    if (product && product.stock !== undefined && product.stock < 5) {
+        // agregue este aviso  para darle utilidad a los servicios =)
+        product.aviso = "¡ÚLTIMAS UNIDADES! Quedan pocos productos.";
+    }
+
+    return product;
 };
 
 export const createProd = async (productData) => {
