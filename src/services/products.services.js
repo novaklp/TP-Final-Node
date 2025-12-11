@@ -9,8 +9,6 @@ export const getProdById = async (id) => {
 };
 
 export const createProd = async (productData) => {
-    // Aquí podrías agregar lógica de negocio extra antes de guardar
-    // Ej: Calcular impuestos, validar stock externo, etc.
     return await ProductModel.create(productData);
 };
 

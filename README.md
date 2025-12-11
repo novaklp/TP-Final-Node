@@ -1,6 +1,6 @@
 # 🚀 Proyecto Final Backend - API REST
 
-API RESTful desarrollada con Node.js, Express y Firebase (Firestore) para la gestión de productos y usuarios. Incluye autenticación segura con JWT y validación de datos con Zod.
+API RESTful desarrollada con Node.js, Express y Firebase (Firestore) para la gestión de productos y usuarios. Incluye autenticación segura con JWT y validación de datos con Zod (no es obligatorio, pero lo agregue para practicar).
 
 ## 🛠️ Tecnologías
 
@@ -11,38 +11,6 @@ API RESTful desarrollada con Node.js, Express y Firebase (Firestore) para la ges
 - **Zod** - Validación de datos
 - **Dotenv** - Variables de entorno
 
-## ⚙️ Instalación
-
-1. Clonar el repositorio:
-   ```bash
-   git clone https://github.com/novaklp/TP-Final-Node.git
-   cd TP-Final-Node
-   ```
-
-2. Instalar dependencias:
-   ```bash
-   npm install
-   ```
-
-3. Configurar variables de entorno:
-   Crea un archivo `.env` en la raíz y agrega tus credenciales de Firebase:
-   ```env
-   JWT_SECRET=tu_clave_secreta
-   FIREBASE_API_KEY=...
-   FIREBASE_AUTH_DOMAIN=...
-   FIREBASE_PROJECT_ID=...
-   # (Resto de variables de Firebase)
-   ```
-
-4. Iniciar el servidor:
-   ```bash
-   npm run dev  # Modo desarrollo
-   npm start    # Modo producción
-   ```
-
-## 📚 Documentación de la API
-
-### 🔐 Autenticación
 
 #### Registrar Usuario
 - **POST** `/auth/register`
@@ -82,7 +50,9 @@ API RESTful desarrollada con Node.js, Express y Firebase (Firestore) para la ges
   ```json
   {
     "nombre": "Monitor 24",
-    "precio": 250
+    "precio": 250,
+    "category" : "Electronica",
+    "stock": 10
   }
   ```
 

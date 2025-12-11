@@ -12,7 +12,7 @@ export const register = async (req, res) => {
         if (!validation.success) {
             return res.status(400).json({
                 error: "Datos inválidos",
-                details: validation.error.errors.map(e => e.message)
+                details: validation.error.issues.map(e => e.message)
             });
         }
 
@@ -50,24 +50,23 @@ export const login = async (req, res) => {
         if (!validation.success) {
             return res.status(400).json({
                 error: "Datos inválidos",
-                details: validation.error.errors.map(e => e.message)
+                details: validation.error.issues.map(e => e.message)
             });
         }
 
         const { username, password } = validation.data;
 
-        // 1. Buscar usuario REAL en Firebase
+        // Buscar usuario REAL en Firebase
         const userFound = await UserModel.findByUsername(username);
 
         if (!userFound) {
             return res.status(401).json({ error: "Credenciales inválidas" });
         }
 
-        // 2. Comparar contraseña (La que envía el usuario vs El Hash en Firebase)
+        // Comparar contraseña (La que envía el usuario vs El Hash en Firebase)
         const isMatch = await bcrypt.compare(password, userFound.password);
 
         if (isMatch) {
-            // Crear el payload
             const userForToken = {
                 username: userFound.username,
                 role: userFound.role,
@@ -85,7 +84,6 @@ export const login = async (req, res) => {
             res.status(401).json({ error: "Credenciales inválidas" });
         }
     } catch (error) {
-        console.error(error);
         res.status(500).json({ error: "Error interno en el servidor" });
     }
 };

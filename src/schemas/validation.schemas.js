@@ -10,7 +10,10 @@ export const productSchema = z.object({
     precio: z.number({
         required_error: "El precio es obligatorio",
         invalid_type_error: "El precio debe ser un número"
-    }).positive("El precio debe ser mayor a 0")
+    }).positive("El precio debe ser mayor a 0"),
+
+    category: z.array(z.string()).optional(),
+    stock: z.number().int().positive().optional()
 });
 
 // Validar Login
